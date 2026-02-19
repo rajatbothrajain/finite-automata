@@ -64,19 +64,17 @@ The abstract DFA definition used by the module is:
 - `F ⊆ Q`: accept/final states
 - `δ: Q × Σ → Q`: transition function
 
-### Example: mod-three
+### Example: 
+
+#### modThree
 
 - `modThree(input: string): number` in [src/examples/modThree.ts](src/examples/modThree.ts)
   - Accepts the empty string (`""`, treated as 0)
   - Throws for any character other than `0` or `1`
   - Returns remainder `0`, `1`, or `2`
 
-Alternative wrapper using the generic factory:
-
+#### modThreeFactory : 
 - `modThree(input: string): number` in [src/examples/modThreeFactory.ts](src/examples/modThreeFactory.ts)
-
-### Example: generic mod-N
-
 - `createModFSM(modulus: number)` in [src/automata/createBinaryModFSM.ts](src/automata/createBinaryModFSM.ts)
   - Builds an FSM that computes `parseInt(input, 2) mod modulus` for any positive integer modulus
   - Transition uses a single `if`-subtraction instead of `%` or a `while` loop — O(1)
@@ -146,6 +144,16 @@ This repository intentionally uses the DFA/FSA formulation for clarity and reusa
 
 ```
 import { modThree } from "./src/examples/modThree";
+
+modThree("1101") // => 1  (13 mod 3)
+modThree("1110") // => 2  (14 mod 3)
+modThree("1111") // => 0  (15 mod 3)
+```
+
+### mod-three-factory
+
+```
+import { modThree } from "./src/examples/modThreeFactory";
 
 modThree("1101") // => 1  (13 mod 3)
 modThree("1110") // => 2  (14 mod 3)
